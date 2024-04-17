@@ -1,0 +1,27 @@
+# docker run 
+# -name mysql-pruebas 
+# -p 3307:3306 
+# -e MYSQL_ROOT_PASSWORD=1234  falta esto, exige ver la contraseña del usuario root
+# -d mysql
+
+version: '3.4' # no sabemos en que version estamos exactamente.. quizas es la 3.6.. comillas simples
+
+services: 
+  php-fsd-2024:
+    image: php:8.1-apache
+    working_dir: /var/www/html ## aqui es donde normalmente se pone todo el codigo.
+    volumes:
+    - ./:/var/www/html
+
+    ## container_name:  se suele llamar igual que la aplicacion..
+    ports:
+      - 8080:80 
+     ## - 3310:3306 puerto nuevo pero usamos el 3306 por defecto en este tipo de imagen. Quizas hacen falta comilas.. ? El 3310 es un puerto nuevo que habilitaremos para acceder al servidor..
+    # environment:
+    #   - MYSQL_ROOT_PASSWORD=1234
+
+
+# ls  comprobar si estoy en la carpeta 
+# docker-compose up busca la imagen que tenemos aqui, y la descarga si no la tenemos. si quitas la version te instala la ultima subida a docker hub .. teneis que tener todos la misma.
+# la imagen no estaba activa docker ps , y el puerto tenia un espacio entre 3310:3306 . ponemos comando:  sudo apt install docker-compose y  sudo docker-compose up 
+# 
